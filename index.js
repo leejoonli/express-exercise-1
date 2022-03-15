@@ -8,6 +8,9 @@ app.use(express.json());
 app.use(express.urlencoded( {extended: true} ));
 
 // Routes
+app.get('/', (req, res) => {
+    res.redirect('/api/');
+});
 
 // Start Server
 app.listen(app.get('port'), () => {
