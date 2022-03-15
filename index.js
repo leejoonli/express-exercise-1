@@ -7,10 +7,16 @@ app.set('port', process.env.PORT || 8000);
 app.use(express.json());
 app.use(express.urlencoded( {extended: true} ));
 
-// Routes
+// Redirect
 app.get('/', (req, res) => {
     res.redirect('/api/');
 });
+
+// ADD CONTROLLERS
+// REF booke
+
+// END CONTROLLERS
+// REF booke
 
 // Start Server
 app.listen(app.get('port'), () => {
