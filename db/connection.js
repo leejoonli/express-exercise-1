@@ -1,4 +1,4 @@
-require('dotenv').copnfig();
+require('dotenv').config();
 const mongoose = require('mongoose');
 
 // Mongo URL and Connection
