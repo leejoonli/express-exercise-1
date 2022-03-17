@@ -5,11 +5,11 @@ app.set('port', process.env.PORT || 8000);
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded( {extended: true} ));
+app.use(express.urlencoded({ extended: true }));
 
 // Redirect
 app.get('/', (req, res) => {
-    res.redirect('/api/');
+    res.redirect('/api/orders');
 });
 
 // ADD CONTROLLERS
