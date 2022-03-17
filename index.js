@@ -14,9 +14,17 @@ app.get('/', (req, res) => {
 
 // ADD CONTROLLERS
 // REF booke
+const ordersController = require('./controllers/ordersController');
+
+app.use('/api/orders', ordersController);
 
 // END CONTROLLERS
 // REF booke
+app.use((err, req, res, next) => {
+  const statusCode = res.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
+  res.status(statusCode).send(message);
+});
 
 // Start Server
 app.listen(app.get('port'), () => {
