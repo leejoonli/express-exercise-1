@@ -1,0 +1,21 @@
+[
+    {
+        "order": 1,
+        "year": 2022,
+        "paid": true,
+        "cost": {
+            "price": 10.00,
+            "currency": "USD"
+        },
+        "items": [
+            {
+                "product": "Cat Toy",
+                "colors": [
+                    "Green",
+                    "Brown"
+                ],
+                "quantity": 1
+            }
+        ]
+    }
+]
