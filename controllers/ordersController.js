@@ -42,15 +42,25 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         // find order to update
-        const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, {new: true, overwrite: true});
+        const newOrder = await Order.create(req.body);
         // send response in JSON
-        res.json(updatedOrder);
+        res.status(201).json(newOrder);
     } catch(err) {
         next(err);
     }
 });
 
 // PUT
+router.put('/:id', async (req, res, next) => {
+    try {
+        // find order to update
+        const updatedOrder = await Order.findByIdAndUpdate(req.body.id, req.body, { new: true, overwrite: true});
+        // send response in JSON
+        res.json(updatedOrder);
+    } catch(err) {
+        next(err);
+    }
+});
 
 // PATCH
 
