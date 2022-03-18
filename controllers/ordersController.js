@@ -75,6 +75,22 @@ router.patch('/:id', async (req, res, next) => {
 })
 
 // DELETE
+router.delete('/:id', async (req, res, next) => {
+    try {
+        // find order to delete
+        const deletedOrder = await Order.findByIdAndDelete(req.params.id);
+        // if exists
+        if (deletedOrder) {
+            // send response in JSON
+            res.json(deletedOrder);
+        } else {
+            // else send status 404 not found
+            res.sendStatus(404);
+        }
+    } catch(err) {
+        next(err);
+    }
+});
 
 // export
 module.exports = router;
