@@ -9,16 +9,88 @@ const Order = require('../models/Order');
 
 // ROUTES
 // GET, Index
+router.get('/', async (req, res, next) => {
+    try {
+        // get all orders
+        const orders = await Order.find({});
+        // send response in JSON
+        res.json(orders);
+    } catch(err) {
+        next(err);
+    }
+});
 
 // GET, single
+router.get('/:id', async (req, res, next) => {
+    try {
+        // get single order
+        const order = await Order.findById(req.params.id);
+        // if found
+        if(order) {
+            // send response in JSON
+            res.json(order);
+        } else {
+            // else send status 404 not found
+            res.sendStatus(404);
+        }
+    } catch(err) {
+        next(err);
+    }
+});
 
 // POST
+router.post('/', async (req, res, next) => {
+    try {
+        // find order to update
+        const newOrder = await Order.create(req.body);
+        // send response in JSON
+        res.status(201).json(newOrder);
+    } catch(err) {
+        next(err);
+    }
+});
 
 // PUT
+router.put('/:id', async (req, res, next) => {
+    try {
+        // find order to update
+        const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true, overwrite: true});
+        // send response in JSON
+        res.json(updatedOrder);
+    } catch(err) {
+        next(err);
+    }
+});
 
 // PATCH
+router.patch('/:id', async (req, res, next) => {
+    try {
+        // find order to update
+        const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true});
+        // send response in JSON
+        res.json(updatedOrder);
+    } catch(err) {
+        next(err);
+    }
+})
 
 // DELETE
+router.delete('/:id', async (req, res, next) => {
+    try {
+        // find order to delete
+        const deletedOrder = await Order.findByIdAndDelete(req.params.id);
+        // if exists
+        if (deletedOrder) {
+            // send response in JSON
+            res.json(deletedOrder);
+        } else {
+            // else send status 404 not found
+            res.sendStatus(404);
+        }
+    } catch(err) {
+        next(err);
+    }
+});
 
 // export
 module.exports = router;
