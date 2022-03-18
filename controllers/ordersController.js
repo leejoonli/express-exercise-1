@@ -54,7 +54,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
     try {
         // find order to update
-        const updatedOrder = await Order.findByIdAndUpdate(req.body.id, req.body, { new: true, overwrite: true});
+        const updatedOrder = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true, overwrite: true});
         // send response in JSON
         res.json(updatedOrder);
     } catch(err) {
@@ -63,6 +63,16 @@ router.put('/:id', async (req, res, next) => {
 });
 
 // PATCH
+router.patch('/:id', async (req, res, next) => {
+    try {
+        // find order to update
+        const updatedOrder = await Order.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true});
+        // send response in JSON
+        res.json(updatedOrder);
+    } catch(err) {
+        next(err);
+    }
+})
 
 // DELETE
 
